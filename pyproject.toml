@@ -1,0 +1,39 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Flask-Argon2Hasher"
+version = "0.9.0"
+description = "Flask extension for Argon2 password hashing."
+readme = {file = "README.md", content-type = "text/markdown"}
+authors = [{ name = "Andreas Sörenby", email = "sutekh@abaddon.se" }]
+maintainers = [{ name = "Andreas Sörenby", email = "sutekh@abaddon.se" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "Operating System :: OS Independent",
+    "Environment :: Web Environment",
+    "Framework :: Flask",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["Flask", "Extension", "Extensions", "Argon2", "Hashing", "Password", "Flask-Extension", "Password hashing"]
+dependencies = [
+    "Flask>=2.0.0",
+    "argon2_cffi>=21.0.0"
+]
+requires-python = ">=3.7"
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.urls]
+documentation = "https://github.com/sorenby/flask_argon2hash/README.md"
+repository = "https://github.com/sorenby/flask_argon2hasher"
+changelog = "sttps://https://github.com/sorenby/flask_argon2hasher/CHANGES.md"
+issues = "https://github.com/sorenby/flask_argon2hasher/issues"
