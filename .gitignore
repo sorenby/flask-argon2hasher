@@ -1,5 +1,0 @@
-dist/
-src/Flask_Argon2Hasher.egg-info/
-src/flask_flask_argon2hasher/__pycache__/
-.env
-.gitignore
