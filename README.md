@@ -77,26 +77,26 @@ The following configuration options are available.
 
 You can create your own configuration profiles in a JSON file with the following syntax.
 
-> {
->    "MY_FIRST_PROFILE": {
->        "type" : "ID",
->        "version" : 19,
->        "salt_len" : 16,
->        "hash_len" : 32,
->        "time_cost" : 3,
->        "memory_cost" : 65536,
->        "parallelism" : 4
->    },
->    "MY_SECOND_PROFILE": {
->        "type" : "ID",
->        "version" : 19,
->        "salt_len" : 16,
->        "hash_len" : 32,
->        "time_cost" : 1,
->        "memory_cost" : 2097152,
->        "parallelism" : 4
->    }
-> }
+    {
+        "MY_FIRST_PROFILE": {
+            "type" : "ID",
+            "version" : 19,
+            "salt_len" : 16,
+            "hash_len" : 32,
+            "time_cost" : 3,
+            "memory_cost" : 65536,
+            "parallelism" : 4
+        },
+        "MY_SECOND_PROFILE": {
+            "type" : "ID",
+            "version" : 19,
+            "salt_len" : 16,
+            "hash_len" : 32,
+            "time_cost" : 1,
+            "memory_cost" : 2097152,
+            "parallelism" : 4
+        }
+    }
 
 Save the JSON in your project and update your configuration accordingly.
 
