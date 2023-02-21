@@ -98,17 +98,17 @@ You can create your own configuration profiles in a JSON file with the following
         }
     }
 
-Save the JSON in your project and update your configuration accordingly.
+Save the JSON in your project folder and update your configuration accordingly.
 
     ARGON2HASHER_PROFILES_JSON = "my_argon2_profiles.json"
 
 ### Pepper
 
 You have the option of using a password pepper by setting ARGON2HASHER_PEPPER to either a string or boolean value.
-If it´s a boolean value True, the password pepper defaults to **Argon2Pepper**.
+If it´s a boolean value **True**, the password pepper defaults to "***Argon2Pepper***".
 Otherwise it will use whatever string value set in ARGON2HASHER_PEPPER.
 By default Flask-Argon2Hasher won´t use a pepper, but the option is there if you want it.
-If you decide to use it, make sure you store it somewhere **safe** and **NOT** alongside the password hashes in you database.
+If you decide to use it, make sure you store it somewhere ***safe*** and ***NOT*** alongside the password hashes in you database.
 
 > ***WARNING If you loose your pepper all password hashes created with it will be USELESS***. 
   

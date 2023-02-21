@@ -1,0 +1,2 @@
+- 0.9.1 - Finished README file
+- 0.9.2 - Cleaned up code and added some minor things not listed here.

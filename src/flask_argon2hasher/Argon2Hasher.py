@@ -24,12 +24,11 @@ from .profiles import Params as Parameters
 
 ### TODO:
 # Add: 
+# user defined JSON profile file
 # support for logging
 # comments
-# README
-# LICENSE
 # tests (pytest or nox)
-# 
+# Add links to Argon2-cffi and Flask
 
 
 class Argon2Hasher():
@@ -101,21 +100,15 @@ class Argon2Hasher():
             return self.profiles['DEFAULT']
 
     def generate_password_hash(self, password: Union[str, bytes]) -> str:
-        print("Generating password hash")
         _PEPPER = self.PEPPER
         if _PEPPER:
-            print(f"{type(_PEPPER)}")
-            print(f"Pepper is str {_PEPPER}")
-            print(_PEPPER+password)
             #Add logging
             return self._passwordhasher.hash(_PEPPER+password)
         else:
-            print("No pepper")
             return self._passwordhasher.hash(password)
     
     def check_password_hash(self, hash: Union[str, bytes], password: Union[str, bytes]) -> Literal[True]:
     #Add logging
-        print("Checking hash")
         try:
             _PEPPER = self.PEPPER
             if isinstance(_PEPPER, str):

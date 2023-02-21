@@ -1,19 +1,4 @@
-"""
-    ##Configuration for Flask-Argon2Hasher
-    ### Possible configurations:
-        # ARGON2HASHER_PEPPER (String/Boolean)
-        # ARGON2HASHER_TYPE (Enum)
-        # ARGON2HASHER_VERSION (Int)
-        # ARGON2HASHER_SALT_LEN (Int) 
-        # ARGON2HASHER_HASH_LEN (Int)
-        # ARGON2HASHER_TIME_COST (Int)
-        # ARGON2HASHER_MEMORY_COST (Int)
-        # ARGON2HASHER_PARALLELISM (Int)
-        # ARGON2HASHER_ENCODING (String)
-        # ARGON2HASHER_PROFILE (String)
-"""
-
-__version_info__ = ("0", "9", "1")
+__version_info__ = ("0", "9", "2")
 __version__ = ".".join(__version_info__)
 __author__ = "Andreas Sörenby"
 __author_email__ = "sorenby@abaddon.se"
