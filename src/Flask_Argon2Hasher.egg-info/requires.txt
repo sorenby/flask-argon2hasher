@@ -1,5 +1,0 @@
-Flask>=2.0.0
-argon2_cffi>=21.0.0
-
-[test]
-pytest
