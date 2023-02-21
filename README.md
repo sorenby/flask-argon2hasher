@@ -57,13 +57,13 @@ The following configuration options are available.
 
 | Variable Name | Description | Type | Default |
 |------|------|------|------|
-|`ARGON2HASHER_TYPE`| Choose whether you want Argon2i ("I"), Argon2d ("D"), or Argon2id ("ID"). If you don’t know what that means, choose "ID". | <str> | "ID" |
-|`ARGON2HASHER_VERSION`| The latest supported version of the Argon2 algorithm is 19. | <int> | 19 |
-|`ARGON2HASHER_SALT_LEN`| Length of random salt to be generated for each password. | <int> | 16 |
-|`ARGON2HASHER_HASH_LEN`| Length of the hash in bytes. | <int> | 32 |
-|`ARGON2HASHER_TIME_COST`| Defines the amount of computation realized and therefore the execution time, given in number of iterations. | <int> | 1 |
-|`ARGON2HASHER_MEMORY_COST`| Defines the memory usage, given in kibibytes. | <int> | 2097152 |
-|`ARGON2HASHER_PARALLELISM`| Defines the number of parallel threads (changes the resulting hash value). | <int> | 4 |
-|`ARGON2HASHER_ENCODING`| The Argon2 C library expects bytes. So if hash() or verify() are passed a str, it will be encoded using this encoding. | <str> | "utf-8" |
-|`ARGON2HASHER_PEPPER`| Add a pepper to the password. | <str> or <bool> | False |
-|`ARGON2HASHER_PROFILE`| Use a predefined profile. | <str> | "Default" |
+|`ARGON2HASHER_TYPE`| Choose whether you want Argon2i ("I"), Argon2d ("D"), or Argon2id ("ID"). If you don’t know what that means, choose "ID". | string | "ID" |
+|`ARGON2HASHER_VERSION`| The latest supported version of the Argon2 algorithm is 19. | integer | 19 |
+|`ARGON2HASHER_SALT_LEN`| Length of random salt to be generated for each password. | integer | 16 |
+|`ARGON2HASHER_HASH_LEN`| Length of the hash in bytes. | integer | 32 |
+|`ARGON2HASHER_TIME_COST`| Defines the amount of computation realized and therefore the execution time, given in number of iterations. | integer | 1 |
+|`ARGON2HASHER_MEMORY_COST`| Defines the memory usage, given in kibibytes. | integer | 2097152 |
+|`ARGON2HASHER_PARALLELISM`| Defines the number of parallel threads (changes the resulting hash value). | integer | 4 |
+|`ARGON2HASHER_ENCODING`| The Argon2 C library expects bytes. So if hash() or verify() are passed a str, it will be encoded using this encoding. | string | "utf-8" |
+|`ARGON2HASHER_PEPPER`| Add a pepper to the password. | string or boolean | False |
+|`ARGON2HASHER_PROFILE`| Use a predefined profile. | string | "Default" |
