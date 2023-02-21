@@ -16,5 +16,14 @@
         "time_cost" : 1,
         "memory_cost" : 2097152,
         "parallelism" : 4
+    },
+    "TESTING_ONLY_PROFILE": {
+        "type" : "ID",
+        "version" : 19,
+        "salt_len" : 8,
+        "hash_len" : 4,
+        "time_cost" : 1,
+        "memory_cost" : 8,
+        "parallelism" : 1
     }
 }

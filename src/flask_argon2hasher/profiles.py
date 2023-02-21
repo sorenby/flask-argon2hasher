@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from unicodedata import normalize
 
 import json
-from config import __PROFILES__, __PROTECTED_PROFILES__, __PROTECTED_WORDS__
+from .config import __PROFILES__, __PROTECTED_PROFILES__, __PROTECTED_WORDS__
 
 @dataclass
 class Params(Parameters):

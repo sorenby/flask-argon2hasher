@@ -13,10 +13,10 @@
         # ARGON2HASHER_PROFILE (String)
 """
 
-__version_info__ = ("0", "9", "0")
+__version_info__ = ("0", "9", "1")
 __version__ = ".".join(__version_info__)
 __author__ = "Andreas Sörenby"
-__author_email__ = "sutekh@abaddon.se"
+__author_email__ = "sorenby@abaddon.se"
 
 from argon2.low_level import Type
 import os

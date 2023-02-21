@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Flask-Argon2Hasher"
-version = "0.9.0"
+version = "0.9.1"
 description = "Flask extension for Argon2 password hashing."
 readme = {file = "README.md", content-type = "text/markdown"}
 authors = [{ name = "Andreas Sörenby", email = "sutekh@abaddon.se" }]
@@ -33,7 +33,7 @@ requires-python = ">=3.7"
 test = ["pytest"]
 
 [project.urls]
-documentation = "https://github.com/sorenby/flask_argon2hash/README.md"
-repository = "https://github.com/sorenby/flask_argon2hasher"
-changelog = "sttps://https://github.com/sorenby/flask_argon2hasher/CHANGES.md"
-issues = "https://github.com/sorenby/flask_argon2hasher/issues"
+documentation = "https://github.com/sorenby/flask-argon2hasher/README.md"
+repository = "https://github.com/sorenby/flask-argon2hasher"
+changelog = "https://github.com/sorenby/flask-argon2hasher/CHANGES.md"
+issues = "https://github.com/sorenby/flask-argon2hasher/issues"

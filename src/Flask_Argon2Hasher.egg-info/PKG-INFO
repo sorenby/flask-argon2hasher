@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: Flask-Argon2Hasher
-Version: 0.9.0
+Version: 0.9.1
 Summary: Flask extension for Argon2 password hashing.
 Author-email: Andreas Sörenby <sutekh@abaddon.se>
 Maintainer-email: Andreas Sörenby <sutekh@abaddon.se>
@@ -32,10 +32,10 @@ License: BSD 3-Clause License
         CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
         OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
         OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-Project-URL: documentation, https://github.com/sorenby/flask_argon2hash/README.md
-Project-URL: repository, https://github.com/sorenby/flask_argon2hasher
-Project-URL: changelog, sttps://https://github.com/sorenby/flask_argon2hasher/CHANGES.md
-Project-URL: issues, https://github.com/sorenby/flask_argon2hasher/issues
+Project-URL: documentation, https://github.com/sorenby/flask-argon2hasher/README.md
+Project-URL: repository, https://github.com/sorenby/flask-argon2hasher
+Project-URL: changelog, https://github.com/sorenby/flask-argon2hasher/CHANGES.md
+Project-URL: issues, https://github.com/sorenby/flask-argon2hasher/issues
 Keywords: Flask,Extension,Extensions,Argon2,Hashing,Password,Flask-Extension,Password hashing
 Classifier: Operating System :: OS Independent
 Classifier: Environment :: Web Environment

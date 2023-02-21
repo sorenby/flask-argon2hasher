@@ -1,13 +1,13 @@
 try:
     from argon2 import PasswordHasher
     from argon2.low_level import Type
-    from argon2.exceptions import Argon2Error, VerifyMismatchError, VerificationError, InvalidHash
+    from argon2.exceptions import VerifyMismatchError, VerificationError, InvalidHash
 except ImportError as e:
     print('argon2_cffi is required to use Flask-Argon2Hasher')
     raise e
 from flask import Flask
 from typing import Union, Literal
-from config import (
+from .config import (
     ARGON2HASHER_TYPE,
     ARGON2HASHER_VERSION,
     ARGON2HASHER_SALT_LEN,
@@ -19,8 +19,8 @@ from config import (
     ARGON2HASHER_PROFILE,
     ARGON2HASHER_PEPPER,
     )
-from profiles import Profiles
-from profiles import Params as Parameters
+from .profiles import Profiles
+from .profiles import Params as Parameters
 
 ### TODO:
 # Add: 
@@ -39,6 +39,14 @@ class Argon2Hasher():
 
     def init_app(self, app: Flask = None):
         self.TYPE = app.config.get('ARGON2HASHER_TYPE', ARGON2HASHER_TYPE)
+        ## Correcting TYPE
+        if isinstance(self.TYPE, str):
+            if self.TYPE.upper() == "I":
+                self.TYPE = Type.I
+            elif self.TYPE.upper() == "D":
+                self.TYPE = Type.D
+            else:
+                self.TYPE = Type.ID
         self.VERSION = app.config.get('ARGON2HASHER_VERSION',ARGON2HASHER_VERSION)
         self.SALT_LEN = app.config.get('ARGON2HASHER_SALT_LEN',ARGON2HASHER_SALT_LEN)
         self.HASH_LEN = app.config.get('ARGON2HASHER_HASH_LEN',ARGON2HASHER_HASH_LEN)
@@ -48,10 +56,17 @@ class Argon2Hasher():
         self.ENCODING = app.config.get('ARGON2HASHER_ENCODING',ARGON2HASHER_ENCODING)
         self.PROFILE = app.config.get('ARGON2HASHER_PROFILE',ARGON2HASHER_PROFILE)
         self.PEPPER = app.config.get('ARGON2HASHER_PEPPER',ARGON2HASHER_PEPPER)
+        ## Correcting PEPPER
+        if isinstance(self.PEPPER, str):
+            if self.PEPPER.upper() == "TRUE":
+                self.PEPPER = "Argon2Pepper"
+            if self.PEPPER.upper() == "FALSE":
+                self.PEPPER = False
         self.profiles = Profiles()
+        self._profile = ""
         self._set_user_defined_profile()
         self._passwordhasher = self._get_passwordhasher()
-        app.argon2hasher = self
+        app.password = self
 
     def _get_passwordhasher(self):
         passwordhasher = PasswordHasher(encoding=self.ENCODING)
@@ -71,27 +86,36 @@ class Argon2Hasher():
         )
 
     def _select_profile(self) -> Parameters:
-        if self.profiles['DEFAULT'] != self.profiles['USER_DEFINED']:
+        try:
+            if self.PROFILE in self.profiles:
+                if self.profiles[self.PROFILE] == self.profiles['USER_DEFINED']:
+                    self._profile = self.PROFILE
+                    return self.profiles[self.PROFILE]
+            else:
+                if self.profiles['DEFAULT'] == self.profiles['USER_DEFINED']:
+                    self._profile = "DEFAULT"
+                    return self.profiles['DEFAULT']
+            self._profile = "USER_DEFINED"
             return self.profiles['USER_DEFINED']
-        else:
+        except:
             return self.profiles['DEFAULT']
 
     def generate_password_hash(self, password: Union[str, bytes]) -> str:
-        #Add logging
+        print("Generating password hash")
         _PEPPER = self.PEPPER
-        if isinstance(_PEPPER, str):
+        if _PEPPER:
+            print(f"{type(_PEPPER)}")
+            print(f"Pepper is str {_PEPPER}")
+            print(_PEPPER+password)
             #Add logging
-            self._passwordhasher.hash(_PEPPER+password)
-        elif _PEPPER:
-            #Add logging
-            _PEPPER = "Argon2Pepper"
-            self._passwordhasher.hash(_PEPPER+password)
+            return self._passwordhasher.hash(_PEPPER+password)
         else:
-            #Add logging
-            self._passwordhasher.hash(password)
-
+            print("No pepper")
+            return self._passwordhasher.hash(password)
+    
     def check_password_hash(self, hash: Union[str, bytes], password: Union[str, bytes]) -> Literal[True]:
     #Add logging
+        print("Checking hash")
         try:
             _PEPPER = self.PEPPER
             if isinstance(_PEPPER, str):
@@ -117,6 +141,9 @@ class Argon2Hasher():
             #Add logging
             return False
 
+    hash = generate_password_hash
+    verify = check_password_hash
+
 # Fast helper function for quick hashing and verifications.
 # from flask_argon2hasher import generate_password_hash, check_password_hash
 
@@ -138,8 +165,5 @@ def check_password_hash(hash, password):
         #Add logging
         return False
 
-passhash = generate_password_hash("somepassword")
-
-verify = check_password_hash(passhash, "somepdassword")
-
-print(verify)
+hash = generate_password_hash
+verify = check_password_hash

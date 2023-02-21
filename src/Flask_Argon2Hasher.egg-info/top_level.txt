@@ -1,4 +1,1 @@
-Argon2Hasher
-__init__
-config
-profiles
+flask_argon2hasher
