@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Flask-Argon2Hasher"
-version = "0.9.2"
+version = "0.9.3"
 description = "Flask extension for Argon2 password hashing."
 readme = {file = "README.md", content-type = "text/markdown"}
 authors = [{ name = "Andreas Sörenby", email = "sutekh@abaddon.se" }]

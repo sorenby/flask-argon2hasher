@@ -34,7 +34,7 @@ class Profiles(UserDict):
 
     delete_profile(name="PROFILE NAME")
     """
-    def __init__(self):
+    def __init__(self, ud_profile_json: str = None):
         super().__init__(self)
         self.__setitem__("DEFAULT", 
             Params(
@@ -76,7 +76,7 @@ class Profiles(UserDict):
         """ Loads profiles from a JSON file """
 
         try:
-            with open(__PROFILES__, 'r') as profiles:
+            with open(filename, 'r') as profiles:
                     self._json = json.load(profiles)
         except IOError as e:
             print(f"Couldn´t open %s: %s" % (__PROFILES__, e))

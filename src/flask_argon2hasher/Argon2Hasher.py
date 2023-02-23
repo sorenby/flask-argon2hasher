@@ -18,18 +18,12 @@ from .config import (
     ARGON2HASHER_ENCODING,
     ARGON2HASHER_PROFILE,
     ARGON2HASHER_PEPPER,
+    ARGON2HASHER_UD_PROFILE_FILE,
     )
 from .profiles import Profiles
 from .profiles import Params as Parameters
 
-### TODO:
-# Add: 
-# user defined JSON profile file
-# support for logging
-# comments
-# tests (pytest or nox)
-# Add links to Argon2-cffi and Flask
-
+import os
 
 class Argon2Hasher():
     def __init__(self, app: Flask = None):
@@ -37,6 +31,19 @@ class Argon2Hasher():
             self.init_app(app)
 
     def init_app(self, app: Flask = None):
+        self._configure(app=app)
+        self.profiles = Profiles()
+        if isinstance(self.UD_JSON_FILE, str):
+            try:
+                self.profiles.load_json(self.UD_JSON_FILE)
+            except:
+                pass
+        self._profile = ""
+        self._set_user_defined_profile()
+        self._passwordhasher = self._get_passwordhasher()
+        app.password = self
+
+    def _configure(self, app: Flask = None) -> None:
         self.TYPE = app.config.get('ARGON2HASHER_TYPE', ARGON2HASHER_TYPE)
         ## Correcting TYPE
         if isinstance(self.TYPE, str):
@@ -53,6 +60,18 @@ class Argon2Hasher():
         self.MEMORY_COST = app.config.get('ARGON2HASHER_MEMORY_COST',ARGON2HASHER_MEMORY_COST)
         self.PARALLELISM = app.config.get('ARGON2HASHER_PARALLELISM',ARGON2HASHER_PARALLELISM)
         self.ENCODING = app.config.get('ARGON2HASHER_ENCODING',ARGON2HASHER_ENCODING)
+        self.UD_JSON_FILE = app.config.get('ARGON2HASHER_UD_PROFILE_FILE', ARGON2HASHER_UD_PROFILE_FILE)
+        ## Fix ud json file location
+        if isinstance(self.UD_JSON_FILE, str):
+            if self.UD_JSON_FILE.upper() == 'FALSE':
+                self.UD_JSON_FILE = False
+            else:
+                _location = os.path.join(os.getcwd(),self.UD_JSON_FILE)
+                if os.path.exists(_location):
+                    self.UD_JSON_FILE = _location
+                else:
+                    self.UD_JSON_FILE = False
+
         self.PROFILE = app.config.get('ARGON2HASHER_PROFILE',ARGON2HASHER_PROFILE)
         self.PEPPER = app.config.get('ARGON2HASHER_PEPPER',ARGON2HASHER_PEPPER)
         ## Correcting PEPPER
@@ -61,11 +80,7 @@ class Argon2Hasher():
                 self.PEPPER = "Argon2Pepper"
             if self.PEPPER.upper() == "FALSE":
                 self.PEPPER = False
-        self.profiles = Profiles()
-        self._profile = ""
-        self._set_user_defined_profile()
-        self._passwordhasher = self._get_passwordhasher()
-        app.password = self
+
 
     def _get_passwordhasher(self):
         passwordhasher = PasswordHasher(encoding=self.ENCODING)

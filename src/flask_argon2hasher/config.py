@@ -1,10 +1,13 @@
-__version_info__ = ("0", "9", "2")
+from argon2.low_level import Type
+import os
+
+__version_info__ = ("0", "9", "3")
 __version__ = ".".join(__version_info__)
 __author__ = "Andreas Sörenby"
 __author_email__ = "sorenby@abaddon.se"
 
-from argon2.low_level import Type
-import os
+__BASE_LOCATION__ = os.getcwd()
+
 
 # Default type for argon2 (Recommended)
 ARGON2HASHER_TYPE = Type.ID
@@ -26,6 +29,8 @@ ARGON2HASHER_ENCODING = 'utf-8'
 ARGON2HASHER_PROFILE= 'Default'
 # If value = False don´t use pepper, if value = True use APP_SECRET_KEY as pepper or if value = "String" use "String" as pepper. 
 ARGON2HASHER_PEPPER = False
+# User defined profiles file json
+ARGON2HASHER_UD_PROFILE_FILE = False
 
 __PROTECTED_PROFILES__ = [
     "RFC_9106_HIGH_MEMORY", "RFC_9106_LOW_MEMORY", "DEFAULT", "USER_DEFINED", 
@@ -38,4 +43,7 @@ __PROTECTED_WORDS__ = [
     "SETDEFAULT", "UPDATE", "VALUES",
     ]
 
+        
+
 __PROFILES__ = os.path.join(os.path.dirname(__file__), 'profiles.json')
+
