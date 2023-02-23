@@ -33,7 +33,7 @@ requires-python = ">=3.7"
 test = ["pytest"]
 
 [project.urls]
-documentation = "https://github.com/sorenby/flask-argon2hasher/README.md"
+documentation = "https://github.com/sorenby/flask-argon2hasher/blob/main/README.md"
 repository = "https://github.com/sorenby/flask-argon2hasher"
-changelog = "https://github.com/sorenby/flask-argon2hasher/CHANGES.md"
+changelog = "https://github.com/sorenby/flask-argon2hasher/blob/main/CHANGES.md"
 issues = "https://github.com/sorenby/flask-argon2hasher/issues"
